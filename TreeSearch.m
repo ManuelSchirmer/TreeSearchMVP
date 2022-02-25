@@ -1,5 +1,6 @@
 close all
 
+rng('shuffle');
 searchDepth = 2;
 state_Ego0 = randi([0 20]); % State = liveness value
 states_Other0 = [randi([0 20]), randi([0 20])]; % 2 other vehicles
@@ -61,7 +62,7 @@ function [decisionsNext_Ego, value_max, graph, nodeID_global] = planMaxManeuver(
     for id_decision = length(decisions_Ego):-1:1 % Reverse to remove unsafe decisions without confusing idx
         safetyLevel = 0;
         for id_other = 1:length(decisions_Other)
-            rng(state_Ego*depthCurrent*id_decision) % Keep randomness deterministic
+            rng(state_Ego*depthCurrent*id_decision); % Keep randomness deterministic
             safetyLevel = min(safetyLevel, -getNumberUnSafeTransitions());
 
             if safetyLevel < safety_limit(depthCurrent)

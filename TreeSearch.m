@@ -24,8 +24,9 @@ for depthBound = 1:searchDepth % Iterative deepening
     if ~isempty(bestDecision_iteration)
         % Minimum Violation Planning
         bestDecision_Ego = bestDecision_iteration;
-        figure('Name', ['Iteration: ', num2str(depthBound)])
+        figure('Name', ['Iteration: ', num2str(depthBound)]);
         plot(dG_iteration, 'EdgeLabel', dG_iteration.Edges.Power, 'EdgeColor', cell2mat(dG_iteration.Edges.Color), 'NodeColor', cell2mat(dG_iteration.Nodes.Color), 'Layout', 'layered')
+        title(['Iteration: ', num2str(depthBound)]);
     end
 end
 
